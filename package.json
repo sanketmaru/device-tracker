@@ -1,0 +1,25 @@
+{
+  "name": "device-tracker",
+  "version": "1.0.0",
+  "description": "Device Tracker using Nodejs, Mongoose, Web Sockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanketmaru/device-tracker.git"
+  },
+  "keywords": [
+    "node",
+    "mongodb",
+    "mongoose",
+    "sockets"
+  ],
+  "author": "Sanket Maru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanketmaru/device-tracker/issues"
+  },
+  "homepage": "https://github.com/sanketmaru/device-tracker"
+}
