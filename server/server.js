@@ -8,7 +8,7 @@ var compression = require('compression');
 var app = express();
 
 // Connect to the mapit database (couldnt be simpler)
-mongoose.connect('mongodb://localhost:27017/mapit');
+mongoose.connect('mongodb://localhost:27017/deviceTracker');
 
 // Use the body-parser package in our application
 // The body parser will let us parse the url-encoded http requests
@@ -35,4 +35,4 @@ app.use('/api', router);
 // We start the server by listening to port 3000
 app.listen(process.env.PORT || 3000);
 
-console.log("Our server is running wouhou!!");
+console.log("Server Started!!");
