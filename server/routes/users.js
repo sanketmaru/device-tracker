@@ -1,8 +1,7 @@
 "use strict";
 var authenticationCtrl = require("../app/controllers/authentication-controller"),
-  middleware = require('../middleware');
-var user = controllers.users;
-var isAuthenticated = middleware.auth.isAuthenticated;
+  middleware = require('../middleware'),
+  isAuthenticated = middleware.auth.isAuthenticated;
 
 module.exports = function(router) {
 

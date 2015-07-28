@@ -13,7 +13,7 @@ var requestHandler = require("../../middleware/").requestHandler;
  * @param res
  */
 exports.login = function(req, res) {
-  var authParams = _.pick(req.body, 'username', 'password', 'orgId', 'userrole');
+  var authParams = _.pick(req.body, 'email', 'password');
   var referer = req.headers.referer;
 
   var serviceParams = _.extend(authParams, {

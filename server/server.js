@@ -3,12 +3,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var compression = require('compression');
+var app = require('./server/');
+console.log(userRoutes);
 
 // Create our Express application
 var app = express();
 
 // Connect to the mapit database (couldnt be simpler)
-mongoose.connect('mongodb://localhost:27017/deviceTracker');
+mongoose.connect('mongodb://localhost:27017/devicetracker');
 
 // Use the body-parser package in our application
 // The body parser will let us parse the url-encoded http requests
@@ -20,13 +22,13 @@ app.use(bodyParser.urlencoded({
 
 // Create our router that
 // will route the requests to the corresponding
-// ressources
+// resources
 var router = express.Router();
+//userRoutes(router);
 
 // app.set('views', __dirname + '/client/views');
 // app.set('view engine', 'jade');
 app.use(compression()); // gzips responses
-
 
 // We tell our app to use
 // our router with the api prefix

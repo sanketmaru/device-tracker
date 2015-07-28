@@ -1,10 +1,31 @@
 var User = require('../app/models/User');
 var Promise = require('bluebird');
 
-var userService = {};
+var authenticateService = {};
 
+/**
+* Have a token based authentication for mobile as well web app to work
+**/
+authenticateService.login = Promise.method( function signUp(user){
 
-userService.saveUser = Promise.method( function saveUser(user){
+  var loginQuery = {
+    email: user.email,
+    password: user.password //TODO:- hash the password using encryption.hashPassword
+  });
+
+  // find the user
+  User.find(loginQuery)
+    .then(function(res){
+      // generate a token here and send a token to client to store in session storage
+      console.log(res);
+      return res;
+    })
+    .catch(function(err){
+      throw new Error(err);
+    });
+});
+
+authenticateService.signUp = Promise.method( function signUp(user){
   // create a new user
   var newUser = User({
     email: user.email,
@@ -16,6 +37,7 @@ userService.saveUser = Promise.method( function saveUser(user){
   newUser.save()
     .then(function(res){
       console.log(res);
+      return res;
     })
     .catch(function(err){
       throw new Error(err);
@@ -23,4 +45,4 @@ userService.saveUser = Promise.method( function saveUser(user){
 });
 
 
-module.exports = userService;
+module.exports = authenticateService;
