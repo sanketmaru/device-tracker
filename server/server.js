@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({
 // ressources
 var router = express.Router();
 
-app.set('views', __dirname + '/client/views');
-app.set('view engine', 'jade');
+// app.set('views', __dirname + '/client/views');
+// app.set('view engine', 'jade');
 app.use(compression()); // gzips responses
 
 

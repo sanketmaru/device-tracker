@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/sanketmaru/device-tracker",
   "devDependencies": {
+    "bluebird": "^2.9.34",
     "body-parser": "^1.13.2",
     "compression": "^1.4.0",
     "configise": "^0.2.3",
