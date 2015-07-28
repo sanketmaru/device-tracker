@@ -1,8 +1,10 @@
 angular.module('dtAuthentication')
-	.controller('AuthenticationCtrl', ['$scope', 'AuthenticationService','UI_MESSAGE',
-		function($scope, AuthenticationService, Message){
+	.controller('AuthenticationCtrl', ['$scope', 'authenticationService','UI_MESSAGE',
+		function($scope, authenticationService, Message){
 
-		$scope.currentTab = 'home';
+		$scope.currentTab = 'login';
+
+    $scope.user = {};
 
 		var ENTER_KEY_EVENT = 13;
 
@@ -15,57 +17,11 @@ angular.module('dtAuthentication')
     };
 
     $scope.login = function(){
-    	ProductService.get()
-    		.then(function(products){
-    			$scope.products = products;
-    		})
-    		.catch(function(err){
-    			alert(err.message || Message.ERROR);
-    		})
+      console.log("submitting User");
     };
 
-    $scope.register = function(){
-      ProductService.get()
-        .then(function(products){
-          $scope.products = products;
-        })
-        .catch(function(err){
-          alert(err.message || Message.ERROR);
-        })
+    $scope.signup = function(){
+      console.log("submitting User");
     };
-
-    $scope.selectProduct = function(product){
-    	$scope.searchText = "";
-    	$scope.product = product;
-    	$scope.readOnly = true;
-    };
-
-    $scope.editProduct = function(event){
-
-    	if(event.keyCode === ENTER_KEY_EVENT){
-
-        if(!$scope.product.sellingPrice || !$scope.product.name){
-          alert(Message.REQUIRED_ERROR);
-          return;
-        }
-
-        if(!ProductService.validSellingPrice($scope.product)){
-          alert(Message.SELLING_PRICE_ERROR);
-          return;
-        }
-
-    		ProductService.edit($scope.product)
-    		.then(function(result){
-    			alert(Message.UPDATE_SUCCESS);
-          $scope.getProducts();
-    		}).catch(function(err){
-    			alert(err.message || Message.ERROR);
-    		});
-    	}
-
-    };
-
-    //initialized
-		$scope.getProducts();
 
 	}]);

@@ -1,8 +1,8 @@
 'use strict';
-angular.module('dtAuthenticate', [
+angular.module('dtAuthentication', [
 	'ui.router',
-	'sgProduct',
-	'sgMessage',
+	'dtRequest',
+	'dtMessage',
 	]).config(['$urlRouterProvider','$stateProvider',
   function($urlRouterProvider, $stateProvider) {
 
@@ -11,12 +11,12 @@ angular.module('dtAuthenticate', [
 	  $stateProvider
 	    .state('login', {
 	      url: "/login",
-	      templateUrl: "templates/login.html",
+	      templateUrl: "../templates/login.html",
 	      controller: "AuthenticationCtrl"
 	    })
-	    .state('register', {
+	    .state('signup', {
 	      url: "/signup",
-	      templateUrl: "templates/register.html",
+	      templateUrl: "../templates/signup.html",
 	      controller: "AuthenticationCtrl"
 	    });
   }

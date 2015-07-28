@@ -1,5 +1,5 @@
 <div class="tab-content">
-	<form name="userForm" novalidate ng-submit="login()">
+	<form name="userForm" novalidate ng-submit="signup()">
 
 		<div class="form-group" ng-class="{'has-error': userForm.email.$invalid && !userForm.email.$pristine}" >
 			<label>Email</label>
@@ -14,7 +14,6 @@
 			<span class="help-block" ng-show="userForm.password.$error.pattern">Wrong Input</span>
 		</div>
 
-		<input type="submit" value="Login" ng-if="!readOnly" ng-disabled="userForm.$invalid"></input>
+		<input type="submit" value="Sign Up" ng-disabled="userForm.$invalid"></input>
 	</form>
-
 </div>

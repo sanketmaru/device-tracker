@@ -1,4 +1,4 @@
-angular.module('dtAuthentication', ['dtRequest'])
+angular.module('dtAuthentication')
   .service('authenticationService', ['$q', 'requestService',
   function($q, requestService){
 
