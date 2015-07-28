@@ -1,0 +1,17 @@
+<form name="userForm" novalidate ng-submit="submitUser()">
+
+	<div class="form-group" ng-class="{'has-error': userForm.email.$invalid && !userForm.email.$pristine}" >
+		<label>Email</label>
+		<input type="text" class="form-control" name="email" ng-model="user.email" ng-if="!readOnly" required></input>
+		<span class="help-block" ng-show="userForm.email.$error.required && !userForm.email.$pristine">Required</span>
+	</div>
+
+	<div class="form-group" ng-class="{'has-error': userForm.password.$invalid && !userForm.password.$pristine}">
+		<label>Password</label>
+		<input type="text" class="form-control" name="qty" ng-model="user.password" ng-if="!readOnly" ng-pattern="/^[0-9]*$/" required></input>
+		<span class="help-block" ng-show="userForm.password.$error.required && !userForm.password.$pristine">Required</span>
+		<span class="help-block" ng-show="userForm.password.$error.pattern">Wrong Input</span>
+	</div>
+
+	<input type="submit" value="Add" ng-if="!readOnly" ng-disabled="userForm.$invalid"></input>
+</form>

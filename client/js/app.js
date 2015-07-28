@@ -12,12 +12,12 @@ angular.module('dtAuthenticate', [
 	    .state('login', {
 	      url: "/login",
 	      templateUrl: "templates/login.html",
-	      controller: "LoginCtrl"
+	      controller: "AuthenticationCtrl"
 	    })
 	    .state('register', {
-	      url: "/edit",
+	      url: "/signup",
 	      templateUrl: "templates/register.html",
-	      controller: "RegisterCtrl"
+	      controller: "AuthenticationCtrl"
 	    });
   }
 ]);
