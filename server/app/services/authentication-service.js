@@ -1,4 +1,4 @@
-var User = require('../app/models/User');
+var User = require('../../app/models/user');
 var Promise = require('bluebird');
 
 var authenticateService = {};
@@ -11,7 +11,7 @@ authenticateService.login = Promise.method( function signUp(user){
   var loginQuery = {
     email: user.email,
     password: user.password //TODO:- hash the password using encryption.hashPassword
-  });
+  }
 
   // find the user
   User.find(loginQuery)

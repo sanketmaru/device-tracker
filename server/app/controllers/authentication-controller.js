@@ -2,7 +2,7 @@
 var _ = require('underscore');
 var authService = require('../services/authentication-service');
 var logger = require("../../lib/logger");
-var requestHandler = require("../../middleware/").requestHandler;
+var requestHandler = require("../../middleware/requesthandler");
 
 /**
  * This action is used to sign in user
@@ -22,7 +22,7 @@ exports.login = function(req, res) {
   requestHandler.handle(req, res, authService.authenticate, serviceParams);
 };
 
-exports.signup = function(req, res){
+exports.signUp = function(req, res){
   var authParams = _.pick(req.body, 'username', 'password', 'orgId', 'userrole');
   var referer = req.headers.referer;
 

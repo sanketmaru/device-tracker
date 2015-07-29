@@ -2,7 +2,7 @@ var encryption = require('../lib/encryption');
 
 module.exports = {
 
-  isAuthenticated = function(req, res){
+  isAuthenticated : function(req, res){
 
     var response = {
       message: "Bad Request",

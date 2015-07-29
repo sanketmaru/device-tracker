@@ -1,6 +1,6 @@
 "use strict";
 var logger = require('../lib/logger');
-var errors = require('../lib/errors/');
+//var errors = require('../lib/errors/');
 var _ = require('underscore');
 
 module.exports = {

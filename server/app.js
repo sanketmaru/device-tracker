@@ -3,8 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var compression = require('compression');
-var app = require('./server/');
-console.log(userRoutes);
+var users = require('./routes/users');
 
 // Create our Express application
 var app = express();
@@ -24,7 +23,7 @@ app.use(bodyParser.urlencoded({
 // will route the requests to the corresponding
 // resources
 var router = express.Router();
-//userRoutes(router);
+users(router);
 
 // app.set('views', __dirname + '/client/views');
 // app.set('view engine', 'jade');
