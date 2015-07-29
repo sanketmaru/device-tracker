@@ -21,7 +21,12 @@ angular.module('dtAuthentication')
     };
 
     $scope.signup = function(){
-      console.log("submitting User");
+      authenticationService.signUp($scope.user)
+        .then(function(res){
+          alert("Success");
+        }).catch(function(err){
+          alert("err");
+        });
     };
 
 	}]);

@@ -3,6 +3,7 @@ angular.module('dtAuthentication', [
 	'ui.router',
 	'dtRequest',
 	'dtMessage',
+	'dtConfig',
 	]).config(['$urlRouterProvider','$stateProvider',
   function($urlRouterProvider, $stateProvider) {
 

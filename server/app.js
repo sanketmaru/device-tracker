@@ -4,12 +4,20 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var users = require('./routes/users');
+var config = require('./config/config');
 
 // Create our Express application
 var app = express();
 
-// Connect to the mapit database (couldnt be simpler)
-mongoose.connect('mongodb://localhost:27017/devicetracker');
+var mongooseConnection = mongoose.connect(appConfig.mongo.uri, appConfig.mongo.options).connection;
+
+mongooseConnection.on('error', function(err) {
+  console.log("mongoose error :- " + err.message);
+});
+
+mongooseConnection.once('open', function() {
+  console.log("mongodb connection open");
+});
 
 // Use the body-parser package in our application
 // The body parser will let us parse the url-encoded http requests

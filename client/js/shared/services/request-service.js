@@ -53,11 +53,11 @@ angular.module('dtRequest', [])
       return _request.call(this, param);
     };
 
-    this.save = function(url, data) {
+    this.post = function(url, data) {
       return _doPost(url, data)
     };
 
-    this.fetch = function(url, data) {
+    this.get = function(url, data) {
       return _doGet(url, data)
     };
 
