@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 
 // Define our User schema
 var UserSchema = new mongoose.Schema({
-  emailId: String,
-  photo: String
+  email: String,
+  photo: String,
+  password: String //TODO:- has the password
 });
 
 // We bind the user model to the UserSchema

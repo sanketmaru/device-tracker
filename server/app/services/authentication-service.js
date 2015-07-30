@@ -6,7 +6,7 @@ var authenticateService = {};
 /**
 * Have a token based authentication for mobile as well web app to work
 **/
-authenticateService.login = Promise.method( function signUp(user){
+authenticateService.login = Promise.method(function signUp(user){
 
   var loginQuery = {
     email: user.email,
@@ -14,14 +14,13 @@ authenticateService.login = Promise.method( function signUp(user){
   }
 
   // find the user
-  User.find(loginQuery)
+  return User.find(loginQuery)
     .then(function(res){
       // generate a token here and send a token to client to store in session storage
-      console.log(res);
-      return res;
-    })
-    .catch(function(err){
-      throw new Error(err);
+      var responseObj = _.extend(res[0]._doc, {
+        token : null
+      });
+      return responseObj;
     });
 });
 
@@ -34,13 +33,10 @@ authenticateService.signUp = Promise.method( function signUp(user){
   });
 
   // save the user
-  newUser.save()
+  return newUser.save()
     .then(function(res){
       console.log(res);
       return res;
-    })
-    .catch(function(err){
-      throw new Error(err);
     });
 });
 

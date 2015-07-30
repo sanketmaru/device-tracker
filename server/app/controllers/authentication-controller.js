@@ -19,15 +19,15 @@ exports.login = function(req, res) {
   var serviceParams = _.extend(authParams, {
     referer: referer
   });
-  requestHandler.handle(req, res, authService.authenticate, serviceParams);
+  requestHandler.handle(req, res, authService.login, serviceParams);
 };
 
 exports.signUp = function(req, res){
-  var authParams = _.pick(req.body, 'username', 'password', 'orgId', 'userrole');
+  var authParams = _.pick(req.body, 'email', 'password');
   var referer = req.headers.referer;
 
   var serviceParams = _.extend(authParams, {
     referer: referer
   });
-  requestHandler.handle(req, res, authService.authenticate, serviceParams);
+  requestHandler.handle(req, res, authService.signUp, serviceParams);
 };

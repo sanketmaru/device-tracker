@@ -4,7 +4,7 @@ var authenticationCtrl = require("../app/controllers/authentication-controller")
 
 module.exports = function(router) {
 
-  router.route('/users/login').post(auth.isAuthenticated, authenticationCtrl.login);
+  router.route('/users/login').post(authenticationCtrl.login);
   router.route('/users/register').post(authenticationCtrl.signUp);
 
 };

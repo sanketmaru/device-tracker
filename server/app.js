@@ -22,14 +22,8 @@ mongooseConnection.once('open', function() {
 });
 
 app.use(compression()); // gzips responses
-
-// Use the body-parser package in our application
-// The body parser will let us parse the url-encoded http requests
-// The "extended" syntax allows for rich objects and arrays to be encoded into
-// the urlencoded format, allowing for a JSON-like experience with urlencoded.
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: false,limit: '1mb'}));
+app.use(bodyParser.json({limit: '1mb'}));
 
 // Create our router that
 // will route the requests to the corresponding

@@ -2,7 +2,7 @@ angular.module('dtAuthentication')
   .service('authenticationService', ['$q', 'requestService', 'Config',
   function($q, requestService, Config){
 
-    this.login = function(){
+    this.login = function(user){
       var deferred = $q.defer();
       requestService.post(Config.endPoint.login, user)
         .then(function(res){
