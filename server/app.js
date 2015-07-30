@@ -9,6 +9,8 @@ var config = require('./config/config');
 // Create our Express application
 var app = express();
 
+var router = express.Router();
+
 var mongooseConnection = mongoose.connect(appConfig.mongo.uri, appConfig.mongo.options).connection;
 
 mongooseConnection.on('error', function(err) {
@@ -18,6 +20,8 @@ mongooseConnection.on('error', function(err) {
 mongooseConnection.once('open', function() {
   console.log("mongodb connection open");
 });
+
+app.use(compression()); // gzips responses
 
 // Use the body-parser package in our application
 // The body parser will let us parse the url-encoded http requests
@@ -30,18 +34,21 @@ app.use(bodyParser.urlencoded({
 // Create our router that
 // will route the requests to the corresponding
 // resources
-var router = express.Router();
-users(router);
-
-// app.set('views', __dirname + '/client/views');
-// app.set('view engine', 'jade');
-app.use(compression()); // gzips responses
-
-// We tell our app to use
-// our router with the api prefix
 app.use('/api', router);
 
-// We start the server by listening to port 3000
-app.listen(process.env.PORT || 3000);
+users(router);
 
-console.log("Server Started!!");
+
+
+router.get('/', function(req, res) {
+  res.json({
+    message: 'hooray! welcome to our api!'
+  });
+});
+
+
+
+// We start the server by listening to port 9001
+app.listen(process.env.PORT || appConfig.port);
+
+console.log("Server Started on port" + appConfig.port);

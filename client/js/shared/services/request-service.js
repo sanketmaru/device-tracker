@@ -1,6 +1,6 @@
-angular.module('dtRequest', [])
-	.service('requestService', [ '$q', '$http',
-	function($q, $http){
+angular.module('dtRequest', ['dtMessage'])
+	.service('requestService', [ '$q', '$http', 'UI_MESSAGE',
+	function($q, $http, Message){
 
     var _request = function() {
       var deferred = $q.defer();

@@ -4,7 +4,9 @@
   "description": "Device Tracker using Nodejs, Mongoose, Web Sockets",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "debug": "NODE_ENV=development DEBUG=express:* nodemon --debug app",
+    "start": "node app"
   },
   "repository": {
     "type": "git",
