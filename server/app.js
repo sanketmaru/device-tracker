@@ -1,6 +1,6 @@
 // We load the required packages
 var express = require('express');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var users = require('./routes/users');
@@ -11,7 +11,7 @@ var app = express();
 
 var router = express.Router();
 
-var mongooseConnection = mongoose.connect(appConfig.mongo.uri, appConfig.mongo.options).connection;
+/*var mongooseConnection = mongoose.connect(appConfig.mongo.uri, appConfig.mongo.options).connection;
 
 mongooseConnection.on('error', function(err) {
   console.log("mongoose error :- " + err.message);
@@ -20,7 +20,7 @@ mongooseConnection.on('error', function(err) {
 mongooseConnection.once('open', function() {
   console.log("mongodb connection open");
 });
-
+*/
 app.use(compression()); // gzips responses
 app.use(bodyParser.urlencoded({ extended: false,limit: '1mb'}));
 app.use(bodyParser.json({limit: '1mb'}));
@@ -31,8 +31,6 @@ app.use(bodyParser.json({limit: '1mb'}));
 app.use('/api', router);
 
 users(router);
-
-
 
 router.get('/', function(req, res) {
   res.json({
