@@ -1,0 +1,26 @@
+{
+  "name": "device-tracker",
+  "version": "0.0.1",
+  "description": "Device Tracking Module",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanketmaru/device-tracker.git"
+  },
+  "keywords": [
+    "socket",
+    "node",
+    "react",
+    "redis",
+    "webpack",
+    "es6"
+  ],
+  "author": "Sanket Maru",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/sanketmaru/device-tracker/issues"
+  }
+}
