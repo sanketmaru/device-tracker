@@ -22,5 +22,10 @@
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/sanketmaru/device-tracker/issues"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "node-static": "^0.7.7",
+    "socket.io": "^1.4.5"
   }
 }
