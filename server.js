@@ -1,15 +1,47 @@
-var app = require('express')();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-server.listen(process.env.PORT || 8082);
+var express = require('express'),
+    app = express(),
+    path = require('path'),
+    http = require('http').Server(app),
+    io = require('socket.io')(http)
+    main = require('app');
+    /*feed = require('./feed')*/
 
-io.sockets.on('connection', function (socket) {
-  socket.on('location', function (data) {
-    io.sockets.emit('location', data);
-  });
+app.use(express.static(path.join(__dirname, './public')));
+
+io.on('connection', function (socket) {
+    console.log('User connected. Socket id %s', socket.id);
+
+    socket.on('join', function (rooms) {
+        console.log('Socket %s subscribed to %s', socket.id, rooms);
+        if (Array.isArray(rooms)) {
+            rooms.forEach(function(room) {
+                socket.join(room);
+            });
+        } else {
+            socket.join(rooms);
+        }
+    });
+
+    socket.on('leave', function (rooms) {
+        console.log('Socket %s unsubscribed from %s', socket.id, rooms);
+        if (Array.isArray(rooms)) {
+            rooms.forEach(function(room) {
+                socket.leave(room);
+            });
+        } else {
+            socket.leave(rooms);
+        }
+    });
+
+    socket.on('disconnect', function () {
+        console.log('User disconnected. %s. Socket id %s', socket.id);
+    });
 });
 
-app.get('/', function(req, res) {
-  //send the index.html in our public directory
-  res.sendfile('./public/index.html');
+/*feed.start(function(room, type, message) {
+    io.to(room).emit(type, message);
+});*/
+
+http.listen(3000, function () {
+    console.log('listening on: 3000');
 });
