@@ -3,7 +3,7 @@ var express = require('express'),
     path = require('path'),
     http = require('http').Server(app),
     io = require('socket.io')(http)
-    main = require('app');
+    main = require('./app');
     /*feed = require('./feed')*/
 
 app.use(express.static(path.join(__dirname, './public')));
