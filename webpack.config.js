@@ -3,7 +3,6 @@ var webpack = require('webpack');
  
 module.exports = {
   entry: './app.js',
-  target: 'node',
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js'
@@ -11,7 +10,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /.jsx?$/,
+        test: /.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {

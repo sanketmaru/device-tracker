@@ -2,8 +2,9 @@ var express = require('express'),
     app = express(),
     path = require('path'),
     http = require('http').Server(app),
-    io = require('socket.io')(http)
-    main = require('./app');
+    io = require('socket.io')(http),
+    main = require('./app'),
+    nodejsx = require("node-jsx").install();
     /*feed = require('./feed')*/
 
 app.use(express.static(path.join(__dirname, './public')));

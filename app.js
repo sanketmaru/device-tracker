@@ -1,4 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Dashboard from './client/js/components/home/dashboard.js';
 
-
-import Hello from './public/js/components/home/dashboard.jsx';
-import World from './public/js/components/home/main.jsx';
+ReactDOM.render(<Dashboard/>, document.getElementById('app'));
