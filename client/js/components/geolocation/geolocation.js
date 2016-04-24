@@ -5,7 +5,7 @@ export default class Login extends React.Component {
 
 	 constructor() {
 	  super();
-	  this. _handleClick = this._handleClick.bind(this);
+	  this._handleClick = this._handleClick.bind(this);
 	 }
 	
 	_handleGeoPosition(position){

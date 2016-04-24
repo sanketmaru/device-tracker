@@ -7,12 +7,13 @@ module.exports = {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js'
   },
+  devtool: 'source-map',
   module: {
     loaders: [
       {
         test: /.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         query: {
           presets: ['es2015', 'react']
         }
