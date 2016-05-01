@@ -8,13 +8,12 @@ import Dashboard from './client/js/components/home/dashboard.js';
 import Signup from './client/js/components/login/signup.js';
 import Login from './client/js/components/login/login.js';
 
+
 ReactDOM.render(
     <Router history={appHistory}>
-        <Route path="/" component={ Dashboard }>
-            <IndexRoute component={ Dashboard } />
-            <Route path="signup" component={ Signup } />
-            <Route path="login" component={ Login } />
-        </Route>
+        <Route path="/" component={Dashboard}></Route>        	
+    		<Route path="/signup" component={Signup}></Route>
+        <Route path="/login" component={Login}></Route>
     </Router>,
     document.getElementById('app')
 );
