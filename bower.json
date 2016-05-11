@@ -1,0 +1,31 @@
+{
+  "name": "device-tracker",
+  "description": "Device Tracking Module",
+  "main": "app.js",
+  "authors": [
+    "Sanket Maru"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "socket",
+    "node",
+    "react",
+    "redis",
+    "webpack",
+    "es6"
+  ],
+  "homepage": "https://github.com/sanketmaru/device-tracker",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
