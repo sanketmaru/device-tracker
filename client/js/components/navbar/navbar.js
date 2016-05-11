@@ -9,12 +9,8 @@ import { browserHistory } from 'react-router'
 export default class Navbar extends React.Component {
 	constructor() {
 	  super();
-	  this.goToUrl = this.goToUrl.bind(this);
 	}
-	goToUrl(path) {
-	 	browserHistory.push(path);
-	}
-  
+
   render() {
   	return (
 	  	<ul className="nav nav-pills">
@@ -27,8 +23,8 @@ export default class Navbar extends React.Component {
 			  	<Link to='/login'>
 			  	login
 			  	</Link>
-			  </li>		  
-			</ul>  	  	  		
-  	)    
+			  </li>
+			</ul>
+  	)
   }
 }

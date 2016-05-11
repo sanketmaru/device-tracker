@@ -28811,18 +28811,10 @@
 		function Navbar() {
 			_classCallCheck(this, Navbar);
 	
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Navbar).call(this));
-	
-			_this.goToUrl = _this.goToUrl.bind(_this);
-			return _this;
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Navbar).call(this));
 		}
 	
 		_createClass(Navbar, [{
-			key: 'goToUrl',
-			value: function goToUrl(path) {
-				_reactRouter.browserHistory.push(path);
-			}
-		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -29964,10 +29956,16 @@
 	  function Login() {
 	    _classCallCheck(this, Login);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Login).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Login).call(this));
+	
+	    _this._handleClick = _this._handleClick.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(Login, [{
+	    key: '_handleClick',
+	    value: function _handleClick() {}
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -29999,7 +29997,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { type: 'submit', className: 'btn btn-default' },
+	            { type: 'submit', className: 'btn btn-default', onClick: this._handleClick },
 	            'Signup'
 	          )
 	        )
