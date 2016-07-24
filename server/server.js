@@ -6,6 +6,9 @@ bodyParser = require('body-parser'),
 morgan = require('morgan'),
 fs = require("fs"),
 multer = require("multer");
+var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('./config/config');
+var userRoutes = require('./routes/user');
 
 var app = express();
 
@@ -23,11 +26,14 @@ app.use(morgan('combined', {
   stream: accessLogStream
 }));
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 9001);
 
 
 // get an instance of the express Router
 var router = express.Router();
+
+
+userRoutes(router);
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
@@ -43,12 +49,6 @@ app.use(function(req, res, next) {
 router.use(function(req, res, next) {
   console.log('%s %s %s', req.method, req.url, req.path);
   next();
-});
-
-router.get('/signup', function(req, res) {
-  res.json({
-    message: 'hooray! welcome to our api!'
-  });
 });
 
 mongoose.connect('mongodb://localhost/trackerdb');
