@@ -47,6 +47,3 @@ Usage of sockets to update realtime location status of devices, and the same ref
 
 Other specifics:
 Stack: MEAN (MongoDB, Express, AngularJS, NodeJS)
-
-
-
