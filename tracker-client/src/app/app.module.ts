@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { SignupComponent } from './signup/signup.component';
 
+import {MapService} from "./services/map.service";
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup',      component: SignupComponent },
@@ -36,7 +38,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
