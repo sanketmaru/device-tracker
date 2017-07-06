@@ -10,11 +10,13 @@ import { MapComponent } from './map/map.component';
 import { SignupComponent } from './signup/signup.component';
 
 import {MapService} from "./services/map.service";
+import { DeviceListComponent } from './device-list/device-list.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup',      component: SignupComponent },
   { path: 'map',      component: MapComponent },
+  { path: 'admin',      component: DeviceListComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     MapComponent,
-    SignupComponent
+    SignupComponent,
+    DeviceListComponent
   ],
   imports: [
     BrowserModule,
