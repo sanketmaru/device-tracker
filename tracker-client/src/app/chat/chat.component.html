@@ -1,0 +1,8 @@
+<form action=""> 
+  <input [(ngModel)]="message" [ngModelOptions]="{standalone: true}" /><button (click)="sendMessage()">Send</button>
+</form>
+<div id="messages" *ngFor="let message of messages">
+  <div id="item">
+  {{message.text}}
+  </div>
+</div>

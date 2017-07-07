@@ -9,10 +9,15 @@ import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { MapService } from "./services/map.service";
+import { DeviceListComponent } from './device-list/device-list.component';
+import { ChatComponent } from './chat/chat.component';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup',      component: SignupComponent },
   { path: 'map',      component: MapComponent },
+  { path: 'admin',      component: DeviceListComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
@@ -25,7 +30,9 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     MapComponent,
-    SignupComponent
+    SignupComponent,
+    DeviceListComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
