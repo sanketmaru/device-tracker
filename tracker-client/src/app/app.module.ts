@@ -9,8 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { SignupComponent } from './signup/signup.component';
 
-import {MapService} from "./services/map.service";
+import { MapService } from "./services/map.service";
 import { DeviceListComponent } from './device-list/device-list.component';
+import { ChatComponent } from './chat/chat.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     LoginComponent,
     MapComponent,
     SignupComponent,
-    DeviceListComponent
+    DeviceListComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

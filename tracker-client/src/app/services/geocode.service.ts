@@ -13,7 +13,7 @@ export class GeocodeService {
   getCurrentLocation() {
 
     function geo_success(position) {
-      console.log('currentPosition', postition);
+      console.log('currentPosition', position);
       var lat = position.coords.latitude;
       var lng = position.coords.latitude;
       //http://maps.googleapis.com/maps/api/geocode/json?latlng=lat,lng;
