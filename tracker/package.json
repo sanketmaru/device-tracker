@@ -13,6 +13,7 @@
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3",
     "express": "~4.13.1",
+    "mongoose": "^4.11.1",
     "morgan": "~1.6.1",
     "pug": "2.0.0-beta11",
     "reflect-metadata": "0.1.2",
