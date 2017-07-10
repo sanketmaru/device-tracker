@@ -61,6 +61,25 @@ UserSchema.statics = {
   },
 
   /**
+   * Get user
+   * @param {username} username - The username of user.
+   * @returns {Promise<User, APIError>}
+   */
+  getByUsername(username) {
+    console.log('Inside model', username)
+    return this.find({username : username})
+      .limit(1)
+      .exec()
+      .then((user) => {
+        if (user) {
+          return user;
+        }
+        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+        return Promise.reject(err);
+      });
+  },
+
+  /**
    * List users in descending order of 'createdAt' timestamp.
    * @param {number} skip - Number of users to be skipped.
    * @param {number} limit - Limit number of users to be returned.
