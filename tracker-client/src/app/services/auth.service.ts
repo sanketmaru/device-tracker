@@ -21,12 +21,12 @@ export class AuthService {
   }
 
   signup(credentials) {
-    this.http.post('http://localhost:4040/api/users', credentials)
+     this.http.post('http://localhost:4040/api/users', credentials)
       .map(res => res.json())
       .subscribe(
         // We're assuming the response will be an object
         // with the saved user object
-        data => console.log(data),
+        data => data,
         error => console.log(error)
       );
   }

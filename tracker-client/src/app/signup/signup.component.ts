@@ -8,6 +8,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class SignupComponent implements OnInit {
 
+  signUpSuccess : boolean = false;
+
   constructor(private auth: AuthService) {
     debugger;
   }
@@ -16,7 +18,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp(credentials) {
-    this.auth.signup(credentials);
+    this.auth.signup(credentials).subscribe(function(resp){
+      this.signUpSuccess = true;
+    });
   }
 
 }
