@@ -21,11 +21,17 @@ function login(req, res, next) {
   // Ideally you'll fetch this from the db
   // Idea here was to show how jwt works with simplicity
   console.log('Username is', req.body.username);
-  
+
   User.getByUsername(req.body.username)
     .then((user) => {
-      req.user = user; // eslint-disable-line no-param-reassign
-      return next();
+      const token = jwt.sign({
+        username: user.username
+      }, config.jwtSecret);
+
+      return res.json({
+        token,
+        username: user.username
+      });
     })
     .catch(e => {
       const err = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true);
