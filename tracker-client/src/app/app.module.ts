@@ -13,6 +13,8 @@ import { ChatComponent } from './chat/chat.component';
 
 import { MapService } from "./services/map.service";
 import { AuthService } from "./services/auth.service";
+import { GeocodeService } from "./services/geocode.service";
+
 import { AuthGuard } from './services/auth-guard.service';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
@@ -48,7 +50,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [MapService, AuthGuard, AuthService],
+  providers: [MapService, AuthGuard, AuthService, GeocodeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
