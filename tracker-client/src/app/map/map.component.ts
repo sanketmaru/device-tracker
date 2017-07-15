@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { Map } from 'leaflet';
-import {MapService} from "../services/map.service";
+import { MapService } from "../services/map.service";
+import { SocketService } from "../services/socket.service";
 import { GeocodeService } from '../services/geocode.service';
 import {Observable} from 'rxjs/Observable';
 
@@ -13,18 +14,19 @@ import {Observable} from 'rxjs/Observable';
 export class MapComponent implements OnInit {
 
   observable: Observable<any>;
-  greenIcon : any;
-  constructor(private mapService: MapService, private geoCodeService: GeocodeService) {
+  leafletIcon : any;
+  locations: [];
+  connection: Observable<any>;
 
-    this.greenIcon = L.icon( { iconUrl: 'assets/marker-icon.png', shadowUrl: 'assets/marker-shadow.png' } );
-
+  constructor(private mapService: MapService, private geoCodeService: GeocodeService, private socketService:SocketService) {
+    this.leafletIcon = L.icon( { iconUrl: 'assets/marker-icon.png', shadowUrl: 'assets/marker-shadow.png' } );
   }
 
   ngOnInit() {
-
+    //TODO: should be moved to map service
     let map = L.map("map", {
           zoomControl: false,
-          center: L.latLng(51.505, -0.09),
+          center: L.latLng(51.505, -0.09), // default location as London
           zoom: 12,
           minZoom: 4,
           maxZoom: 19,
@@ -41,10 +43,25 @@ export class MapComponent implements OnInit {
     this.observable.subscribe(
         data => {
           var latlng = L.latLng(data.lat, data.lng);
-          var marker = L.marker([data.lat,data.lng], {icon: this.greenIcon}).addTo(this.mapService.map)
+          var marker = L.marker([data.lat,data.lng], {icon: this.leafletIcon}).addTo(this.mapService.map)
           this.mapService.map.panTo(latlng, 12);
+          this.socketService.sendMessage({
+            lat : data.lat,
+            lng : data.lng
+          });
         }
     );
     this.geoCodeService.getCurrentLocation();
+
+    this.connection = this.socketService.socketObservable$;
+    this.connection.subscribe(location => {
+      this.locations.push(location);
+    })
+  }
+
+  // Let's unsubscribe our Observable
+  ngOnDestroy() {
+    this.connection.unsubscribe();
+    this.observable.unsubscribe();
   }
 }

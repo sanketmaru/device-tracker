@@ -9,11 +9,11 @@ import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { SignupComponent } from './signup/signup.component';
 import { DeviceListComponent } from './device-list/device-list.component';
-import { ChatComponent } from './chat/chat.component';
 
 import { MapService } from "./services/map.service";
 import { AuthService } from "./services/auth.service";
 import { GeocodeService } from "./services/geocode.service";
+import { SocketService } from "./services/socket.service";
 
 import { AuthGuard } from './services/auth-guard.service';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
@@ -38,7 +38,6 @@ const appRoutes: Routes = [
     MapComponent,
     SignupComponent,
     DeviceListComponent,
-    ChatComponent,
     UnauthorizedComponent
   ],
   imports: [
@@ -50,7 +49,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [MapService, AuthGuard, AuthService, GeocodeService],
+  providers: [MapService, AuthGuard, AuthService, GeocodeService, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
