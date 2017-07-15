@@ -13,14 +13,14 @@ import {Observable} from 'rxjs/Observable';
 export class MapComponent implements OnInit {
 
   observable: Observable<any>;
-
+  greenIcon : any;
   constructor(private mapService: MapService, private geoCodeService: GeocodeService) {
+
+    this.greenIcon = L.icon( { iconUrl: 'assets/marker-icon.png', shadowUrl: 'assets/marker-shadow.png' } );
 
   }
 
   ngOnInit() {
-
-
 
     let map = L.map("map", {
           zoomControl: false,
@@ -41,7 +41,7 @@ export class MapComponent implements OnInit {
     this.observable.subscribe(
         data => {
           var latlng = L.latLng(data.lat, data.lng);
-          var marker = L.marker([data.lat,data.lng]).addTo(this.mapService.map)
+          var marker = L.marker([data.lat,data.lng], {icon: this.greenIcon}).addTo(this.mapService.map)
           this.mapService.map.panTo(latlng, 12);
         }
     );
