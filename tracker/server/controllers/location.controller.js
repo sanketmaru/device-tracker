@@ -39,9 +39,9 @@ function create(req, res, next) {
 function createLocation(location) {
   return Location.getByLatLng(location.userId, location.lat, location.lng)
     .then(function(locations){
-      const locationObj = new Location({location});
+      const locationObj = new Location({userId : location.userId, lat : location.lat, lng : location.lng});
       return locationObj.save()
-        .then(savedLocation => res.json(savedLocation))
+        .then(savedLocation => savedLocation)
         .catch(e => {
           const err = new APIError('Error while saving location!', httpStatus.INTERNAL_SERVER_ERROR);
           return Promise.reject(err);
