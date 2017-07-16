@@ -29,9 +29,10 @@ export class AuthService {
         // We're assuming the response will be an object
         // with the JWT on an id_token key
         data => {
-          localStorage.setItem('token', data.token);
+          let user = {'token' : data.token, username : data.username, id : data.userId };
+          localStorage.setItem('user', JSON.stringify(user));
           this.loginObserver.next({
-              token : data.token
+              user
           });
         },
         error => console.log(error)
@@ -54,7 +55,7 @@ export class AuthService {
   }
 
   loggedIn() {
-    return localStorage.getItem('token');
+    return JSON.parse(localStorage.getItem('user')).token;
   }
 
   logout() {

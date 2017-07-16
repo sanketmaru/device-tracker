@@ -15,7 +15,7 @@ export class MapComponent implements OnInit {
 
   observable: Observable<any>;
   leafletIcon : any;
-  locations: [];
+  locations = [];
   connection: Observable<any>;
 
   constructor(private mapService: MapService, private geoCodeService: GeocodeService, private socketService:SocketService) {
@@ -46,8 +46,9 @@ export class MapComponent implements OnInit {
           var marker = L.marker([data.lat,data.lng], {icon: this.leafletIcon}).addTo(this.mapService.map)
           this.mapService.map.panTo(latlng, 12);
           this.socketService.sendMessage({
-            lat : data.lat,
-            lng : data.lng
+            lat : data.lat.toFixed(2), // send upto two decimal places
+            lng : data.lng.toFixed(2),
+            userId : JSON.parse(localStorage.getItem('user')).id
           });
         }
     );
@@ -59,9 +60,4 @@ export class MapComponent implements OnInit {
     })
   }
 
-  // Let's unsubscribe our Observable
-  ngOnDestroy() {
-    this.connection.unsubscribe();
-    this.observable.unsubscribe();
-  }
 }

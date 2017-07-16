@@ -10,6 +10,6 @@ router.route('/:userId')
   .get(locationCtrl.get)
 
   /** POST /api/locations/:userId - Update user */
-  .post(validate(paramValidation.createLocation), locationCtrl.create)
+  .post(validate(locationValidation.createLocation), locationCtrl.create)
 
 export default router;

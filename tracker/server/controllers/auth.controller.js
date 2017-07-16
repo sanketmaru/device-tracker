@@ -5,10 +5,10 @@ import config from '../../config/config';
 import User from '../models/user.model';
 
 // sample user, used for authentication
-const user = {
-  username: 'react',
-  password: 'express'
-};
+// const user = {
+//   username: 'react',
+//   password: 'express'
+// };
 
 /**
  * Returns jwt token if valid username and password is provided
@@ -25,12 +25,13 @@ function login(req, res, next) {
   User.getByUsername(req.body.username)
     .then((user) => {
       const token = jwt.sign({
-        username: user.username
+        username: user[0].username
       }, config.jwtSecret);
 
       return res.json({
         token,
-        username: user.username
+        username: user[0].username,
+        userId : user[0].id
       });
     })
     .catch(e => {

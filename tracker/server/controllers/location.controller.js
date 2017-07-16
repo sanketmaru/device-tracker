@@ -1,11 +1,16 @@
 import Location from '../models/location.model';
+import httpStatus from 'http-status';
+import APIError from '../helpers/APIError';
 
 /**
- * Get location
+ * Get locations by userId
+ * @property {string} req.params.userId - The userId of user.
  * @returns {Location}
  */
 function get(req, res) {
-  return res.json(req.user);
+  return Location.getByUserId(req.params.userId)
+    .then(locations => res.json(locations))
+    .catch(e => next(e));
 }
 
 
@@ -31,4 +36,20 @@ function create(req, res, next) {
     .catch(e => next(e));
 }
 
-export default { create };
+function createLocation(location) {
+  return Location.getByLatLng(location.userId, location.lat, location.lng)
+    .then(function(locations){
+      const locationObj = new Location({location});
+      return locationObj.save()
+        .then(savedLocation => res.json(savedLocation))
+        .catch(e => {
+          const err = new APIError('Error while saving location!', httpStatus.INTERNAL_SERVER_ERROR);
+          return Promise.reject(err);
+        });
+    }).catch(e => {
+      const err = new APIError('locations exists!', httpStatus.FOUND);
+      return Promise.reject(err);
+    });
+}
+
+export default { create, get, createLocation };

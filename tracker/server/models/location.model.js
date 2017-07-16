@@ -74,6 +74,23 @@ LocationSchema.statics = {
   },
 
   /**
+   * find locations by Lat, Lng
+   * @param {userId} userId - The userId of user.
+   * @returns {Promise<User, APIError>}
+   */
+  getByLatLng(userId, lat, lng) {
+    return this.find({userId :userId, lat : lat, lng : lng})
+      .exec()
+      .then((locations) => {
+        if (locations.length) {
+          const err = new APIError('locations exists!', httpStatus.FOUND);
+          return Promise.reject(err);
+        }
+        return locations;
+      });
+  },
+
+  /**
    * List users in descending order of 'createdAt' timestamp.
    * @param {number} skip - Number of users to be skipped.
    * @param {number} limit - Limit number of users to be returned.
