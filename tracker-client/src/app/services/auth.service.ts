@@ -55,10 +55,14 @@ export class AuthService {
   }
 
   loggedIn() {
-    return JSON.parse(localStorage.getItem('user')).token;
+    return JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).token : false;
+  }
+
+  getLoggedInUser() {
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   logout() {
-    localStorage.removeItem('id_token');
+    localStorage.removeItem('user');
   }
 }
