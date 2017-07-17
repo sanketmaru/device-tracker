@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/share';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +24,7 @@ export class AuthService {
   }
 
   login(credentials) {
-    this.http.post('http://localhost:4040/api/auth/login', credentials)
+    this.http.post(environment.loginApi, credentials)
       .map(res => res.json())
       .subscribe(
         // We're assuming the response will be an object
@@ -40,7 +41,7 @@ export class AuthService {
   }
 
   signup(credentials) {
-     this.http.post('http://localhost:4040/api/users', credentials)
+     this.http.post(environment.signUpApi, credentials)
       .map(res => res.json())
       .subscribe(
         // We're assuming the response will be an object

@@ -5,11 +5,12 @@ import 'rxjs/add/operator/share';
 import { Injectable } from '@angular/core';
 
 import * as io from 'socket.io-client';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class SocketService {
   // Our localhost address that we set in our server code
-  private url = 'http://localhost:4040'; //TODO should be configurable
+  private url = environment.baseUrl;
   private socket;
   private socketObserver: Observer<any>;
   socketObservable$: Observable<any>;
