@@ -15,6 +15,7 @@ interface Credentials {
 })
 export class LoginComponent implements OnInit {
   observable: Observable<any>;
+  loggedInUser : boolean = false;
   username: string;
   password: string;
 
@@ -31,6 +32,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['map']);
         }
     );
+
+    this.loggedInUser = this.auth.getLoggedInUser();
+    if(this.loggedInUser) {
+      this.router.navigate(['map']);
+    }
   }
 
   onLogin(credentials) {
