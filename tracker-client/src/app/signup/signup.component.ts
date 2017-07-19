@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-signup',
@@ -10,24 +9,21 @@ import {Observable} from 'rxjs/Observable';
 export class SignupComponent implements OnInit {
 
   signUpSuccess : boolean = false;
-  observable: Observable<any>;
-
+  
   constructor(private auth: AuthService) {
-
   }
 
   ngOnInit() {
-    // subscribe to the observable
-    this.observable = this.auth.signUpNotification$;
-    this.observable.subscribe(
-        data => {
-          this.signUpSuccess = true;
-        }
-    );
   }
 
   onSignUp(credentials) {
-    this.auth.signup(credentials);
+    this.auth.signup(credentials)
+    .subscribe(
+        data => {
+          this.signUpSuccess = true;
+        },
+        error => console.log(error)
+      );;
   }
 
 }

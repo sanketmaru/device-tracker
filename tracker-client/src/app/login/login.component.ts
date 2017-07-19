@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import {Observable} from 'rxjs/Observable';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 interface Credentials {
   username: string,
@@ -14,25 +13,14 @@ interface Credentials {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  observable: Observable<any>;
   loggedInUser : boolean = false;
   username: string;
   password: string;
 
-  constructor(private auth: AuthService,private route: ActivatedRoute,
-        private router: Router) {
-
+  constructor(private auth: AuthService, private router: Router) {
   }
 
   ngOnInit() {
-    // subscribe to the observable
-    this.observable = this.auth.loginNotification$;
-    this.observable.subscribe(
-        data => {
-          this.router.navigate(['map']);
-        }
-    );
-
     this.loggedInUser = this.auth.getLoggedInUser();
     if(this.loggedInUser) {
       this.router.navigate(['map']);
@@ -40,7 +28,15 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(credentials) {
-    this.auth.login(credentials);
+    this.auth.login(credentials).subscribe(
+        data => {
+          //TODO move this to persistence service
+          let user = {'token' : data.token, username : data.username, id : data.userId };
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate(['map']);
+        },
+        error => console.log(error)
+      );;
   }
 
 }
