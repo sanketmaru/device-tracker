@@ -15,6 +15,7 @@
       <div class="mt3">
         <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="submit" value="Sign Up">
       </div>
+      <div *ngIf="signUpError" class="light-red code fw9 tracked-tight mt3" id="signUpError">{{signUpError}}</div>
     </div>
     <div class="mt3" *ngIf="signUpSuccess">
       <legend class="ph0 mh0 fw6">Thanks for Sign Up</legend>

@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loggedInUser : boolean = false;
   username: string;
   password: string;
+  loginError : string = '';
 
   constructor(private auth: AuthService, private router: Router) {
   }
@@ -35,7 +36,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['map']);
         },
-        error => console.log(error)
+        error => {
+          this.loginError = JSON.parse(error._body).message || error.statusText;
+        }
       );;
   }
 

@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 export class SignupComponent implements OnInit {
 
   signUpSuccess : boolean = false;
-  
+  signUpError : string;
   constructor(private auth: AuthService) {
   }
 
@@ -22,7 +22,9 @@ export class SignupComponent implements OnInit {
         data => {
           this.signUpSuccess = true;
         },
-        error => console.log(error)
+        error => {
+          this.signUpError = JSON.parse(error._body).message || error.statusText;
+        }
       );;
   }
 

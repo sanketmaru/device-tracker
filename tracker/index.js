@@ -20,13 +20,10 @@ io.on('connection', (socket) => {
    });
 
    socket.on('add-location', (message) => {
-     console.log("new message server", message);
      locationCtrl.createLocation(message)
       .then(function(location){
-        console.log("new message added", location);
         io.emit('location', {location});
       }).catch(e => {
-        console.log("location present");
         io.emit('location-present');
       });
    });

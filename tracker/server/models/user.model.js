@@ -66,8 +66,26 @@ UserSchema.statics = {
    * @returns {Promise<User, APIError>}
    */
   getByUsername(username) {
-    console.log('Inside model', username)
     return this.find({username : username})
+      .limit(1)
+      .exec()
+      .then((user) => {
+        if (user) {
+          return user;
+        }
+        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+        return Promise.reject(err);
+      });
+  },
+
+  /**
+   * Get user
+   * @param {username} username - The username of user.
+   * @param {password} password - The password of user.
+   * @returns {Promise<User, APIError>}
+   */
+  getByUsernamePassword(username, password) {
+    return this.find({username : username, password : password})
       .limit(1)
       .exec()
       .then((user) => {

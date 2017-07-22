@@ -1,4 +1,6 @@
 import User from '../models/user.model';
+import APIError from '../helpers/APIError';
+import httpStatus from 'http-status';
 
 /**
  * Load user and append to req.
@@ -27,15 +29,24 @@ function get(req, res) {
  * @returns {User}
  */
 function create(req, res, next) {
-  const user = new User({
-    username: req.body.username,
-    mobileNumber: req.body.mobileNumber,
-    password: req.body.password
-  });
 
-  user.save()
-    .then(savedUser => res.json(savedUser))
-    .catch(e => next(e));
+  User.getByUsername(req.body.username)
+    .then(function(existingUser){
+      if(existingUser) {
+        const err = new APIError('Username Exists', httpStatus.CONFLICT, true);
+        next(err);
+        return;
+      }
+
+      const user = new User({
+        username: req.body.username,
+        mobileNumber: req.body.mobileNumber,
+        password: req.body.password
+      });
+      user.save()
+        .then(savedUser => res.json(savedUser))
+        .catch(e => next(e));
+    }).catch(e => next(e));
 }
 
 /**

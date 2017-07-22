@@ -22,7 +22,7 @@ function login(req, res, next) {
   // Idea here was to show how jwt works with simplicity
   console.log('Username is', req.body.username);
 
-  User.getByUsername(req.body.username)
+  User.getByUsernamePassword(req.body.username, req.body.password)
     .then((user) => {
       const token = jwt.sign({
         username: user[0].username
