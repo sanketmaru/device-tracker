@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
+import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class GeocodeService {
@@ -37,6 +39,15 @@ export class GeocodeService {
     }
 
     var wpid = navigator.geolocation.watchPosition(geo_success.bind(this), geo_error);
+
+  }
+
+  getUserLocations(userId) {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('userId', userId);
+
+    return this.http.get(environment.locations, {search : params})
+      .map(res => res.json());
 
   }
 

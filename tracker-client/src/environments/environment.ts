@@ -7,7 +7,7 @@ const baseUrl =  "http://localhost:4040";
 export const environment = {
   production: false,
   baseUrl : baseUrl,
-  loginApi : baseUrl + "/api/auth/login",
-  signUpApi : baseUrl + "/api/users",
-
+  login : baseUrl + "/api/auth/login",
+  users : baseUrl + "/api/users",
+  locations : baseUrl + "/api/locations/:userId"
 };

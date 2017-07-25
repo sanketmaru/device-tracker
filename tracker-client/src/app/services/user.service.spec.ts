@@ -5,14 +5,12 @@ import {
 } from '@angular/http';
 import {ResponseOptions} from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
-import { AuthService } from './auth.service';
-import { environment } from '../../environments/environment';
+import { UserService } from './user.service';
 
+describe('UserService', () => {
 
-describe('AuthService', () => {
-  
   let backend: MockBackend;
-  let service: AuthService;
+  let service: UserService;
 
   function setupConnections(backend: MockBackend, options: any) {
     backend.connections.subscribe((connection: MockConnection) => {
@@ -22,9 +20,10 @@ describe('AuthService', () => {
     });
   }
 
-  beforeEach(async() => {
+  beforeEach(() => {
+
     TestBed.configureTestingModule({
-      providers: [AuthService,
+      providers: [UserService,
       MockBackend,
       BaseRequestOptions,
       {
@@ -38,10 +37,10 @@ describe('AuthService', () => {
     });
     const testbed = getTestBed();
     backend = testbed.get(MockBackend);
-    service = testbed.get(AuthService);
+    service = testbed.get(UserService);
   });
 
-  it('should login and check username',() => {
+  it('should signup and check username', () => {
 
     setupConnections(backend, {
       body: {
@@ -57,10 +56,16 @@ describe('AuthService', () => {
       'password' : '1111'
     };
 
-    service.login(credentials).subscribe((data) => {        
+    service.save(credentials).subscribe((data) => {
+        console.log(data);
         expect(data.username).toBe('test');
     });
-      
+  });
+
+  it('should retrieve list of users', () => {
+    service.get().subscribe((data) => {
+      expect(data.length).toBeGreaterThanOrEqual(1);
+    });
   });
 
 

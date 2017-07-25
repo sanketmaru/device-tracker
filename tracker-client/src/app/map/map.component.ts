@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { Map } from 'leaflet';
 import { MapService } from "../services/map.service";
+import { UserService } from "../services/user.service";
 import { SocketService } from "../services/socket.service";
 import { GeocodeService } from '../services/geocode.service';
 import {Observable} from 'rxjs/Observable';
@@ -18,11 +19,22 @@ export class MapComponent implements OnInit {
   locations = [];
   connection: Observable<any>;
 
-  constructor(private mapService: MapService, private geoCodeService: GeocodeService, private socketService:SocketService) {
+  constructor(private mapService: MapService, private geoCodeService: GeocodeService, private socketService:SocketService, private userService: UserService) {
     this.leafletIcon = L.icon( { iconUrl: 'assets/marker-icon.png', shadowUrl: 'assets/marker-shadow.png' } );
   }
 
   ngOnInit() {
+    
+    this.initializeMap();
+
+    this.subscribeGeoLocation();
+
+    this.updateLocations();
+
+
+  }
+
+  initializeMap() {
     //TODO: should be moved to map service
     let map = L.map("map", {
           zoomControl: false,
@@ -37,6 +49,9 @@ export class MapComponent implements OnInit {
     L.marker(map.getCenter()).addTo(map),
     L.control.layers(this.mapService.baseMaps).addTo(map);
     L.control.scale().addTo(map);
+  }
+
+  subscribeGeoLocation() {
 
     // subscribe to the observable
     this.observable = this.geoCodeService.geoCodeNotification$;
@@ -44,7 +59,7 @@ export class MapComponent implements OnInit {
         data => {
           var latlng = L.latLng(data.lat, data.lng);
           var marker = L.marker([data.lat,data.lng], {icon: this.leafletIcon}).addTo(this.mapService.map)
-          this.mapService.map.panTo(latlng, 12);
+          this.mapService.map.panTo(latlng);
           this.socketService.sendMessage({
             lat : data.lat.toFixed(2), // send upto two decimal places
             lng : data.lng.toFixed(2),
@@ -54,10 +69,25 @@ export class MapComponent implements OnInit {
     );
     this.geoCodeService.getCurrentLocation();
 
+  }
+
+  updateLocations() {
+
+    // update it via sockets
     this.connection = this.socketService.socketObservable$;
     this.connection.subscribe(location => {
       this.locations.push(location);
-    })
+    });
+
+    // update locations to get from api
+    let selectedUser = this.userService.getSelectedUser();
+    this.geoCodeService.getUserLocations(selectedUser._id)
+      .subscribe(data => {
+        console.log(data);
+      });
+
   }
+
+
 
 }

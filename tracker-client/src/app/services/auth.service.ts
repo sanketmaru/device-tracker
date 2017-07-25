@@ -13,13 +13,8 @@ export class AuthService {
   }
 
   login(credentials) {
-    return this.http.post(environment.loginApi, credentials)
+    return this.http.post(environment.login, credentials)
       .map(res => res.json());
-  }
-
-  signup(credentials) {
-     return this.http.post(environment.signUpApi, credentials)
-      .map(res => res.json())
   }
 
   loggedIn() {

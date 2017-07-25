@@ -19,7 +19,9 @@ describe('DeviceListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should show list list of devices', () => {
+    component.ngOnInit();
+    expect(component.deviceList).toBeGreaterThanOrEqual(1);
+
   });
 });

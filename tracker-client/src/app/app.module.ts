@@ -14,6 +14,7 @@ import { MapService } from "./services/map.service";
 import { AuthService } from "./services/auth.service";
 import { GeocodeService } from "./services/geocode.service";
 import { SocketService } from "./services/socket.service";
+import { UserService } from "./services/user.service";
 
 import { AuthGuard } from './services/auth-guard.service';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [MapService, AuthGuard, AuthService, GeocodeService, SocketService],
+  providers: [MapService, AuthGuard, AuthService, GeocodeService, SocketService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

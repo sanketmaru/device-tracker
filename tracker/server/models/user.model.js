@@ -108,6 +108,7 @@ UserSchema.statics = {
       .sort({ createdAt: -1 })
       .skip(+skip)
       .limit(+limit)
+      .select('username')
       .exec();
   }
 };
