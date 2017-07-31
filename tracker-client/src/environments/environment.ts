@@ -9,5 +9,5 @@ export const environment = {
   baseUrl : baseUrl,
   login : baseUrl + "/api/auth/login",
   users : baseUrl + "/api/users",
-  locations : baseUrl + "/api/locations/:userId"
+  locations : baseUrl + "/api/locations"
 };

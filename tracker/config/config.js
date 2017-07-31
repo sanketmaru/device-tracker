@@ -20,6 +20,8 @@ const envVarsSchema = Joi.object({
     .description('JWT Secret required to sign'),
   MONGO_HOST: Joi.string().required()
     .description('Mongo DB host url'),
+  MAPS_API_KEY : Joi.string().required()
+    .description('Google Maps API Key'),
   MONGO_PORT: Joi.number()
     .default(27017)
 }).unknown()
@@ -38,7 +40,8 @@ const config = {
   mongo: {
     host: envVars.MONGO_HOST,
     port: envVars.MONGO_PORT
-  }
+  },
+  geocodeKey : envVars.MAPS_API_KEY
 };
 
 export default config;

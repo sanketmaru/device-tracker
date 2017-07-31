@@ -39,14 +39,21 @@ function create(req, res, next) {
 function createLocation(location) {
   return Location.getByLatLng(location.userId, location.lat, location.lng)
     .then(function(locations){
-      const locationObj = new Location({userId : location.userId, lat : location.lat, lng : location.lng});
-      return locationObj.save()
-        .then(savedLocation => savedLocation)
-        .catch(e => {
-          const err = new APIError('Error while saving location!', httpStatus.INTERNAL_SERVER_ERROR);
-          return Promise.reject(err);
-        });
-    }).catch(e => {
+      // reverse geo code
+      return global.geocoder.reverse({ lat:location.lat , lon:location.lng });
+    }).then(function(res) {
+      var geoResponse = res[0];
+      const locationObj = new Location({
+        userId : location.userId,
+        lat : location.lat,
+        lng : location.lng
+        city : geoResponse.city,
+        streetName : geoResponse.streetName,
+        formattedAddress : geoResponse.formattedAddress
+      });
+      return locationObj.save();
+    }).then(savedLocation => savedLocation)
+    .catch(e => {
       const err = new APIError('locations exists!', httpStatus.FOUND);
       return Promise.reject(err);
     });

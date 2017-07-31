@@ -70,11 +70,7 @@ UserSchema.statics = {
       .limit(1)
       .exec()
       .then((user) => {
-        if (user) {
-          return user;
-        }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
-        return Promise.reject(err);
+        return user;
       });
   },
 

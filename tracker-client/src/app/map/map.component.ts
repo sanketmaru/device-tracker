@@ -24,14 +24,9 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     this.initializeMap();
-
     this.subscribeGeoLocation();
-
     this.updateLocations();
-
-
   }
 
   initializeMap() {
@@ -81,10 +76,13 @@ export class MapComponent implements OnInit {
 
     // update locations to get from api
     let selectedUser = this.userService.getSelectedUser();
-    this.geoCodeService.getUserLocations(selectedUser._id)
-      .subscribe(data => {
-        console.log(data);
-      });
+    if(selectedUser && selectedUser._id) {
+      this.geoCodeService.getUserLocations(selectedUser._id)
+        .subscribe(data => {
+          console.log(data);
+        });
+    }
+
 
   }
 

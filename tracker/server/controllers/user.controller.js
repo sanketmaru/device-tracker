@@ -32,7 +32,7 @@ function create(req, res, next) {
 
   User.getByUsername(req.body.username)
     .then(function(existingUser){
-      if(existingUser) {
+      if(existingUser.length) {
         const err = new APIError('Username Exists', httpStatus.CONFLICT, true);
         next(err);
         return;

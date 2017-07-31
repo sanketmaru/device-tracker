@@ -60,6 +60,7 @@
     "method-override": "^2.3.5",
     "mongoose": "4.7.4",
     "morgan": "1.7.0",
+    "node-geocoder": "^3.19.0",
     "socket.io": "^2.0.3",
     "winston": "2.3.0"
   },

@@ -43,10 +43,8 @@ export class GeocodeService {
   }
 
   getUserLocations(userId) {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('userId', userId);
-
-    return this.http.get(environment.locations, {search : params})
+    var userLocationUrl = environment.locations + `/${userId}`;
+    return this.http.get(userLocationUrl)
       .map(res => res.json());
 
   }

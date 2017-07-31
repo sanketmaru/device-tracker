@@ -23,11 +23,15 @@ const LocationSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  street: {
+  streetName: {
     type: String,
     required: false
   },
-  state: {
+  formattedAddress: {
+    type: String,
+    required: false
+  },
+  country: {
     type: String,
     required: false
   },
