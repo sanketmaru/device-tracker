@@ -5,7 +5,7 @@ export default {
   // POST /api/locations/:userId
   createLocation: {
     params: {
-      userId: Joi.string().hex().required()
+      userId: Joi.string().required()
     }
   }
 

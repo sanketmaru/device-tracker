@@ -31,7 +31,7 @@ function login(req, res, next) {
       return res.json({
         token,
         username: user[0].username,
-        userId : user[0].id
+        _id : user[0].id
       });
     })
     .catch(e => {

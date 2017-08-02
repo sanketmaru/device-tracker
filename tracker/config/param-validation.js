@@ -17,7 +17,7 @@ export default {
       mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
     },
     params: {
-      userId: Joi.string().hex().required()
+      userId: Joi.string().required()
     }
   },
 

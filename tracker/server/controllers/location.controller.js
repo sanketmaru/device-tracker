@@ -46,7 +46,7 @@ function createLocation(location) {
       const locationObj = new Location({
         userId : location.userId,
         lat : location.lat,
-        lng : location.lng
+        lng : location.lng,
         city : geoResponse.city,
         streetName : geoResponse.streetName,
         formattedAddress : geoResponse.formattedAddress

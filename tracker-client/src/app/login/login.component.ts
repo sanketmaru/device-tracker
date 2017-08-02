@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(credentials).subscribe(
         data => {
           //TODO move this to persistence service
-          let user = {'token' : data.token, username : data.username, id : data.userId };
+          let user = {'token' : data.token, username : data.username, _id : data._id };
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['map']);
         },

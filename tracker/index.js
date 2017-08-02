@@ -13,8 +13,7 @@ const server   = require('http').Server(app);
 var io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
-   console.log('The user is connected', socket);
-
+   
    socket.on('disconnect', function(){
      console.log('The user is disconnected');
    });

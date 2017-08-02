@@ -18,6 +18,7 @@ import { UserService } from "./services/user.service";
 
 import { AuthGuard } from './services/auth-guard.service';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ListComponent } from './core/list/list.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     MapComponent,
     SignupComponent,
     DeviceListComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
