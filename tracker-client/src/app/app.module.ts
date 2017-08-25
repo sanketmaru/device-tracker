@@ -12,6 +12,7 @@ import { DeviceListComponent } from './device-list/device-list.component';
 
 import { MapService } from "./services/map.service";
 import { AuthService } from "./services/auth.service";
+import { SharedService } from "./services/auth.shared-service";
 import { GeocodeService } from "./services/geocode.service";
 import { SocketService } from "./services/socket.service";
 import { UserService } from "./services/user.service";
@@ -22,11 +23,12 @@ import { ListComponent } from './core/list/list.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'signup',      component: SignupComponent },
-  { path: 'map',      component: MapComponent , canActivate: [AuthGuard]},
-  { path: 'admin',      component: DeviceListComponent, canActivate: [AuthGuard] },
+  { path: 'signup', component: SignupComponent },
+  { path: 'map', component: MapComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: DeviceListComponent, canActivate: [AuthGuard] },
   { path: 'unauthorized', component: UnauthorizedComponent },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }
@@ -52,7 +54,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [MapService, AuthGuard, AuthService, GeocodeService, SocketService, UserService],
+  providers: [MapService, AuthGuard, AuthService, GeocodeService, SocketService, UserService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
