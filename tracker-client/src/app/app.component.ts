@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private _sharedService: SharedService) {
 
     this._sharedService.messageBroadcaster.subscribe(message => {
+      this.loggedInUser = this.auth.getLoggedInUser();
       this.isLoggedIn = true;
     });
 
