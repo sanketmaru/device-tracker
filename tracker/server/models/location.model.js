@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
+import geolib from 'geolib';
 
 /**
  * User Schema
@@ -83,15 +84,31 @@ LocationSchema.statics = {
    * @returns {Promise<User, APIError>}
    */
   getByLatLng(userId, lat, lng) {
-    return this.find({userId :userId, lat : lat, lng : lng})
-      .exec()
-      .then((locations) => {
-        if (locations.length) {
+
+    return this.list() // by userId
+      .then(function(locations){
+        var locationExist = false;
+        for(var locKey in locations) {
+          var loc = locations[locKey];
+
+          var distance = geolib.getDistance(
+              { latitude : lat, longitude: lng },
+              { latitude : loc.lat, longitude: loc.lng }
+          );
+          
+          if(distance < 5) { // if lat lng is already its around 5 kms dont store this lat lng
+            locationExist = true;
+            break;
+          }
+        }
+
+        if(locationExist) {
           const err = new APIError('locations exists!', httpStatus.FOUND);
           return Promise.reject(err);
         }
         return locations;
       });
+    
   },
 
   /**
