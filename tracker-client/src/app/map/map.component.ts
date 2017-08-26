@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mapService.initializeMap();
+
     this.subscribeGeoLocation();
     this.updateLocations();
   }
@@ -36,7 +36,6 @@ export class MapComponent implements OnInit {
 
           var lat = data.lat.toFixed(2);
           var lng = data.lng.toFixed(2);
-          this.mapService.addMarker({lat, lng});
 
           this.socketService.sendMessage({
             lat ,
@@ -63,6 +62,11 @@ export class MapComponent implements OnInit {
       this.geoCodeService.getUserLocations(selectedUser._id)
         .subscribe(data => {
           this.locations = data;
+          if(this.locations && this.locations.length) {
+            let loc = this.locations[0];
+            this.mapService.initializeMap(loc.lat, loc.lng);
+          }
+
           console.log(data);
         });
     }

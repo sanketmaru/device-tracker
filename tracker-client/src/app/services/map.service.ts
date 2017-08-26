@@ -24,27 +24,25 @@ export class MapService {
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
       })
     };
-		this.leafletIcon = L.icon( { iconUrl: 'assets/marker-icon.png', shadowUrl: 'assets/marker-shadow.png' } );
-
-		this.markers = new L.FeatureGroup(this.baseMaps);
-
+		this.leafletIcon = L.icon({ iconUrl: 'assets/marker-icon.png', shadowUrl: 'assets/marker-shadow.png' });
+    this.markers = new L.FeatureGroup(this.baseMaps);
    }
 
-   initializeMap() {
-
-    let map = L.map("map", {
-          zoomControl: false,
-          center: L.latLng(-0.09, 51.505), // default location as London
-          zoom: 12,
-          minZoom: 4,
-          maxZoom: 19,
-          layers: [this.baseMaps.Esri]
-    });
-    this.map = map;
-    L.control.zoom({ position: "topright" }).addTo(map);
-    L.marker(map.getCenter()).addTo(map),
-    L.control.layers(this.baseMaps).addTo(map);
-    L.control.scale().addTo(map);
+   initializeMap(lat, lng) {
+     if(this.map){
+      this.map.remove();
+     }
+      
+      let map = L.map("map", {
+        center:[lat, lng], // default location as passed latlng which is currentPosition
+        zoom: 18,
+        layers: [this.baseMaps.Esri]
+      });
+      
+      this.map = map;
+      L.marker(this.map.getCenter(), {icon: this.leafletIcon}).addTo(this.map),
+      L.control.layers(this.baseMaps).addTo(this.map);
+      L.control.scale().addTo(this.map);
    }
 
    addMarker(data) {

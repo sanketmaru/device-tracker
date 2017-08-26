@@ -85,7 +85,7 @@ LocationSchema.statics = {
    */
   getByLatLng(userId, lat, lng) {
 
-    return this.list() // by userId
+    return this.getByUserId(userId) // by userId
       .then(function(locations){
         var locationExist = false;
         for(var locKey in locations) {
@@ -95,8 +95,8 @@ LocationSchema.statics = {
               { latitude : lat, longitude: lng },
               { latitude : loc.lat, longitude: loc.lng }
           );
-          
-          if(distance < 5) { // if lat lng is already its around 5 kms dont store this lat lng
+
+          if(distance < 5000) { // if lat lng is already its around 5000 mts dont store this lat lng
             locationExist = true;
             break;
           }
@@ -108,7 +108,7 @@ LocationSchema.statics = {
         }
         return locations;
       });
-    
+
   },
 
   /**
