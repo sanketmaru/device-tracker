@@ -37,8 +37,12 @@ export class GeocodeService {
     function geo_error() {
       alert("Sorry, no position available.");
     }
-
-    var wpid = navigator.geolocation.watchPosition(geo_success.bind(this), geo_error);
+    var options = {
+      enableHighAccuracy: false,
+      timeout: 120000,
+      maximumAge: 0
+    };
+    var wpid = navigator.geolocation.watchPosition(geo_success.bind(this), geo_error, options);
 
   }
 
