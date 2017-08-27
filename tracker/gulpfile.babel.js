@@ -62,7 +62,7 @@ gulp.task('default', ['clean'], () => {
 
 // deploy to heroku
 gulp.task('deploy', function() {
-  return gulp.src('./dist/**/*')
+  return gulp.src(['./dist/**/*', './dist/.gitignore', './dist/.env'])
     .pipe(plugins.ghPages({
       branch : 'heroku-pages'
     }));
