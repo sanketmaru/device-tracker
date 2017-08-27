@@ -11,7 +11,7 @@
     "yarn": ">=0.20.3"
   },
   "scripts": {
-    "start": "gulp serve",
+    "start": "node index.js",
     "debug": "cross-env DEBUG=device-tracker:* yarn start",
     "build": "gulp",
     "deploy" : "git subtree push --prefix dist origin heroku-pages",
