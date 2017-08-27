@@ -59,3 +59,11 @@ gulp.task('default', ['clean'], () => {
     ['copy', 'babel']
   );
 });
+
+// deploy to heroku
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(plugins.ghPages({
+      branch : 'heroku-pages'
+    }));
+});

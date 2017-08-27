@@ -51,3 +51,7 @@ node_modules
 .env
 .env.example
 .env.prod
+
+# ignore heroku .publish folder
+
+.publish
