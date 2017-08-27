@@ -1,8 +1,8 @@
 {
-  "name": "express-mongoose-es6-rest-api",
+  "name": "device-tracker",
   "version": "2.0.0",
-  "description": "A Boilerplate application for building REST APIs using express, mongoose in ES6 with code coverage",
-  "author": "Kunal Kapadia <kunalkapadia12@gmail.com>",
+  "description": "Device Tracker node code in es6 and with coverage",
+  "author": "Sanket Maru <sanketmaru@gmail.com>",
   "main": "index.js",
   "private": false,
   "engines": {
@@ -12,8 +12,9 @@
   },
   "scripts": {
     "start": "gulp serve",
-    "debug": "cross-env DEBUG=express-mongoose-es6-rest-api:* yarn start",
+    "debug": "cross-env DEBUG=device-tracker:* yarn start",
     "build": "gulp",
+    "deploy" : "git subtree push --prefix dist origin heroku-pages",
     "lint": "esw *.js server config --color",
     "lint:watch": "yarn lint -- --watch",
     "test": "cross-env JWT_SECRET=test MONGO_HOST=test MAPS_API_KEY=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --require ./test/registerBabel.js --compilers js:babel-core/register --recursive ./test/unit/*.js",
@@ -24,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:KunalKapadia/express-mongoose-es6-rest-api.git"
+    "url": "git@github.com:sanketmaru/device-tracker.git"
   },
   "keywords": [
     "express",

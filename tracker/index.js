@@ -5,6 +5,7 @@ import util from 'util';
 import config from './config/config';
 import app from './config/express';
 import locationCtrl from './server/controllers/location.controller';
+var NodeGeocoder = require('node-geocoder');
 
 const debug = require('debug')('express-mongoose-es6-rest-api:index');
 const server   = require('http').Server(app);
@@ -56,7 +57,6 @@ if (!module.parent) {
   });
 }
 
-var NodeGeocoder = require('node-geocoder');
 
 var options = {
   provider: 'google',
