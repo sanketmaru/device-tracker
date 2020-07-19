@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MapService } from "../services/map.service";
-import { UserService } from "../services/user.service";
-import { SocketService } from "../services/socket.service";
-import { GeocodeService } from '../services/geocode.service';
 import { Observable } from 'rxjs';
+import { GeocodeService } from '../services/geocode.service';
+import { MapService } from "../services/map.service";
+import { SocketService } from "../services/socket.service";
+import { UserService } from "../services/user.service";
 
 @Component({
   selector: 'app-map',
@@ -17,7 +17,8 @@ export class MapComponent implements OnInit {
   locations = [];
   connection: Observable<any>;
 
-  constructor(private mapService: MapService, private geoCodeService: GeocodeService, private socketService:SocketService, private userService: UserService) {
+  constructor(private mapService: MapService, private geoCodeService: GeocodeService,
+              private socketService: SocketService, private userService: UserService) {
 
   }
 
@@ -34,8 +35,8 @@ export class MapComponent implements OnInit {
     this.observable.subscribe(
         data => {
 
-          var lat = data.lat.toFixed(2);
-          var lng = data.lng.toFixed(2);
+          const lat = data.lat.toFixed(2);
+          const lng = data.lng.toFixed(2);
 
           this.socketService.sendMessage({
             lat ,
@@ -57,13 +58,13 @@ export class MapComponent implements OnInit {
     });
 
     // update locations to get from api
-    let selectedUser = this.userService.getSelectedUser() || JSON.parse(localStorage.getItem('user'));
-    if(selectedUser && selectedUser._id) {
+    const selectedUser = this.userService.getSelectedUser() || JSON.parse(localStorage.getItem('user'));
+    if (selectedUser && selectedUser._id) {
       this.geoCodeService.getUserLocations(selectedUser._id)
         .subscribe(data => {
           this.locations = data;
-          if(this.locations && this.locations.length) {
-            let loc = this.locations[0];
+          if (this.locations && this.locations.length) {
+            const loc = this.locations[0];
             this.mapService.initializeMap(loc.lat, loc.lng);
           }
 

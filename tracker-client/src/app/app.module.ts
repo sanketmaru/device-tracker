@@ -1,23 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
- import { RouterModule, Routes } from '@angular/router';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { DeviceListComponent } from './device-list/device-list.component';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
-import { SignupComponent } from './signup/signup.component';
-import { DeviceListComponent } from './device-list/device-list.component';
-
-import { MapService } from "./services/map.service";
+import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from "./services/auth.service";
 import { SharedService } from "./services/auth.shared-service";
 import { GeocodeService } from "./services/geocode.service";
+import { MapService } from "./services/map.service";
 import { SocketService } from "./services/socket.service";
 import { UserService } from "./services/user.service";
-
-import { AuthGuard } from './services/auth-guard.service';
+import { SignupComponent } from './signup/signup.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+
+
+
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },

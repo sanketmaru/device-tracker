@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { SharedService } from "../services/auth.shared-service"
+import { SharedService } from '../services/auth.shared-service';
 
 interface Credentials {
   username: string,
@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
   onLogin(credentials) {
     this.auth.login(credentials).subscribe(
       data => {
-        //TODO move this to persistence service
-        let user = { 'token': data.token, username: data.username, _id: data._id };
+        // TODO move this to persistence service
+        const user = { 'token': data.token, username: data.username, _id: data._id };
         localStorage.setItem('user', JSON.stringify(user));
-        this._sharedService.sendMessage("User Logged in Successfully!");
+        this._sharedService.sendMessage('User Logged in Successfully!');
         this.router.navigate(['map']);
       },
       error => {

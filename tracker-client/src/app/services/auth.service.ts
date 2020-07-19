@@ -3,24 +3,24 @@
 
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
 
-  
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  login(credentials) {
+  login(credentials): Observable<any> {
     return this.http.post(environment.login, credentials).pipe(
-      map(res => res.json()));
+      map(res => res));
   }
 
   loggedIn() {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     return user ? user.token : false;
   }
 

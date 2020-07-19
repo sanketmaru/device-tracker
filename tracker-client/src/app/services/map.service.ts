@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
-import {Map} from "leaflet";
 import * as L from 'leaflet';
+import { Map } from 'leaflet';
 
 @Injectable()
 export class MapService {
