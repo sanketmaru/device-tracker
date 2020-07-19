@@ -1,8 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from "@angular/http";
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
-import 'rxjs/add/operator/map';
+import {Observable, Observer} from 'rxjs';
+
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -48,8 +49,8 @@ export class GeocodeService {
 
   getUserLocations(userId) {
     var userLocationUrl = environment.locations + `/${userId}`;
-    return this.http.get(userLocationUrl)
-      .map(res => res.json());
+    return this.http.get(userLocationUrl).pipe(
+      map(res => res.json()));
 
   }
 

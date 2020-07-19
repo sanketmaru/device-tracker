@@ -3,7 +3,7 @@ import { MapService } from "../services/map.service";
 import { UserService } from "../services/user.service";
 import { SocketService } from "../services/socket.service";
 import { GeocodeService } from '../services/geocode.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-map',

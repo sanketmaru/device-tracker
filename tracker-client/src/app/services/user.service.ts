@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -11,13 +13,13 @@ export class UserService {
   constructor(private http: Http) { }
 
   save(credentials) {
-     return this.http.post(environment.users, credentials)
-      .map(res => res.json())
+     return this.http.post(environment.users, credentials).pipe(
+      map(res => res.json()))
   }
 
   get() {
-    return this.http.get(environment.users)
-      .map(res => res.json());
+    return this.http.get(environment.users).pipe(
+      map(res => res.json()));
   }
 
   setSelectedUser(user) {

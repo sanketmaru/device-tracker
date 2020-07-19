@@ -1,7 +1,7 @@
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import 'rxjs/add/operator/share';
+
+import {share} from 'rxjs/operators';
+import { Subject ,  Observable ,  Observer } from 'rxjs';
+
 import { Injectable } from '@angular/core';
 
 import * as io from 'socket.io-client';
@@ -16,7 +16,7 @@ export class SocketService {
   socketObservable$: Observable<any>;
 
   constructor() {
-    this.socketObservable$ = new Observable(observer => this.socketObserver = observer).share();
+    this.socketObservable$ = new Observable(observer => this.socketObserver = observer).pipe(share());
     this.getLocations();
   }
 

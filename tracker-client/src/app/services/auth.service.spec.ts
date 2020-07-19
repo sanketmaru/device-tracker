@@ -1,12 +1,10 @@
-import {TestBed, inject, async, getTestBed } from '@angular/core/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import {
-  Headers, BaseRequestOptions,
-  Response, HttpModule, Http, XHRBackend, RequestMethod
+  BaseRequestOptions,
+  Http, Response, ResponseOptions
 } from '@angular/http';
-import {ResponseOptions} from '@angular/http';
-import {MockBackend, MockConnection} from '@angular/http/testing';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { AuthService } from './auth.service';
-import { environment } from '../../environments/environment';
 
 
 describe('AuthService', () => {

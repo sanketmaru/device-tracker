@@ -1,8 +1,10 @@
 // auth.service.ts
 
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -13,8 +15,8 @@ export class AuthService {
   }
 
   login(credentials) {
-    return this.http.post(environment.login, credentials)
-      .map(res => res.json());
+    return this.http.post(environment.login, credentials).pipe(
+      map(res => res.json()));
   }
 
   loggedIn() {

@@ -1,16 +1,15 @@
-import { async, ComponentFixture, inject, TestBed, getTestBed } from '@angular/core/testing';
-
-import { LoginComponent } from './login.component';
-import { Router } from '@angular/router';   
-import { FormsModule }   from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { async, ComponentFixture, getTestBed, inject, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import {
-  Headers, BaseRequestOptions,
-  Response, HttpModule, Http, XHRBackend, RequestMethod
+  BaseRequestOptions,
+  Http, Response, ResponseOptions
 } from '@angular/http';
-import {ResponseOptions} from '@angular/http';
-import {MockBackend, MockConnection} from '@angular/http/testing';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { AuthService } from '../services/auth.service';
+import { LoginComponent } from './login.component';
+
 
 class MockRouter {
     navigate(url: string) { return url; }
