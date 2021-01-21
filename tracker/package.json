@@ -62,7 +62,7 @@
     "mongoose": "4.7.4",
     "morgan": "1.7.0",
     "node-geocoder": "^3.19.0",
-    "socket.io": "^2.0.3",
+    "socket.io": "^2.4.0",
     "winston": "2.3.0"
   },
   "devDependencies": {
